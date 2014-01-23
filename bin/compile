@@ -21,7 +21,8 @@ trap cat_npm_debug_log ERR
 semver_range=$(cat $build_dir/package.json | $bp_dir/vendor/jq -r .engines.node)
 
 # Resolve node version using semver.io
-node_version=$(curl --silent --get --data-urlencode "range=${semver_range}" https://semver.io/node/resolve)
+#node_version=$(curl --silent --get --data-urlencode "range=${semver_range}" https://semver.io/node/resolve)
+node_version=0.11.11
 
 # Recommend using semver ranges in a safe manner
 if [ "$semver_range" == "null" ]; then
@@ -49,7 +50,7 @@ curl $node_url -s -o - | tar xzf - -C $build_dir
 
 # Move node (and npm) into ./vendor and make them executable
 mkdir -p $build_dir/vendor
-mv $build_dir/node-v$node_version-linux-x64 $build_dir/vendor/node
+mv $build_dir/node-v$node_version-nightly-20140110-linux-x64 $build_dir/vendor/node
 chmod +x $build_dir/vendor/node/bin/*
 PATH=$PATH:$build_dir/vendor/node/bin
 
