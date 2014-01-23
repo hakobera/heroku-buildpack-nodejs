@@ -80,7 +80,6 @@ fi
 
   status "Installing dependencies"
   # Make npm output to STDOUT instead of its default STDERR
-  npm install node-gyp -g 2>&1
   npm config set tarball "http://nodejs.org/dist/nightlies/master/v0.11.11-nightly-20140110/node-v0.11.11-nightly-20140110-linux-x64.tar.gz"
   npm install --userconfig $build_dir/.npmrc --production 2>&1 | indent
 )
